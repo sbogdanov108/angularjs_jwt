@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Angular JWT</title>
+</head>
+
+<body ng-controller="MainCtrl as vm">
+  <h1>Get Random User</h1>
+
+  <div ng-hide="vm.user">
+    <form ng-submit="vm.login(vm.username, vm.password)">
+      Username: <input type="text" ng-model="vm.username">
+      Password: <input type="text" ng-model="vm.password">
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <div ng-show="vm.user">
+    <h2>Welcome {{vm.user.username}}</h2>
+    <button ng-click="vm.logout()">Logout</button>
+    <br>
+    <button ng-click="vm.getRandomUser()">Get User</button>
+    <pre ng-bind="vm.randomUser | json"></pre>
+  </div>
+
+  <!-- Libs -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+  <script src="app.js"></script>
+
+  <!-- Services-->
+  <script src="/services/randomUserFactory.js"></script>
+  <script src="/services/UserFactory.js"></script>
+  <script src="/services/authTokenFactory.js"></script>
+  <script src="/services/authInterceptorFactory.js"></script>
+
+  <!-- Controllers -->
+  <script src="/controllers/mainCtrl.js"></script>
+</body>
+</html>
